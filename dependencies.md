@@ -13,3 +13,5 @@ sudo dnf install -y \
   networkmanager-tui
 
 # If you have NVIDIA or other GPU, you might need additional driver packages.
+git clone https://github.com/haaarshsingh/dots.git ~/dots
+cd ~/dots
