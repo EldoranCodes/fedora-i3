@@ -1,0 +1,64 @@
+# ──────────────────────────────────────────────
+# Minimal-awesome zsh config (JetBrains Mono 12)
+# ──────────────────────────────────────────────
+
+# ====== Appearance ======
+export TERM=xterm-256color
+export EDITOR=nvim
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
+
+# Set font in terminal profile (JetBrains Mono 12) – handled by terminal emulator
+# LXTerminal → Edit ▸ Preferences ▸ Advanced ▸ Font → JetBrains Mono 12
+
+# ====== Prompt (powerline-style without plugin) ======
+autoload -Uz colors && colors
+autoload -Uz vcs_info
+precmd() { vcs_info }
+setopt prompt_subst
+
+PROMPT='%F{cyan}%n%f@%F{blue}%m%f %F{yellow}%~%f$(print -n ${vcs_info_msg_0_:+ %F{green}${vcs_info_msg_0_}%f})%# '
+
+zstyle ':vcs_info:git:*' formats '%b'
+zstyle ':vcs_info:git:*' actionformats '%b|%a'
+
+# ====== History ======
+HISTFILE=~/.zsh_history
+HISTSIZE=5000
+SAVEHIST=5000
+setopt hist_ignore_all_dups share_history
+
+# ====== Keyboard / completion ======
+autoload -Uz compinit && compinit
+setopt auto_cd autocorrect
+bindkey -e
+bindkey '^[[1;5C' forward-word   # Ctrl+Right
+bindkey '^[[1;5D' backward-word  # Ctrl+Left
+
+# ====== Aliases ======
+alias ll='ls -lah --color=auto'
+alias la='ls -A --color=auto'
+alias gs='git status'
+alias ga='git add .'
+alias gc='git commit'
+alias gp='git push'
+alias v='nvim'
+alias cls='clear'
+alias j='java -version'
+alias javac='javac -J-Dfile.encoding=UTF8'
+
+# ====== Plugins (lightweight manual load) ======
+# zsh-autosuggestions
+if [ -d ~/.zsh/zsh-autosuggestions ]; then
+  source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+
+# zsh-syntax-highlighting
+if [ -d ~/.zsh/zsh-syntax-highlighting ]; then
+  source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
+# ====== Path tweaks ======
+export PATH=$HOME/.local/bin:$PATH
+
+# ====== Greeting ======
+echo -e \"\\n%F{cyan}Welcome, $USER!%f Ready to hack Java ☕\\n\"
