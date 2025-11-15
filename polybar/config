@@ -1,3 +1,30 @@
+#########################################
+#           POLYBAR CONFIG              #
+#  i3 Workspaces | Date | Sys Modules   #
+#     Catppuccin Mocha Theme            #
+#########################################
+
+[bar/mybar]
+width = 100%
+height = 30
+padding-left = 5
+padding-right = 5
+background = #1e1e2e
+foreground = #cdd6f4
+font-0 = "JetBrains Mono:size=14;2"
+font-1 = "FontAwesome:size=14;2"
+
+modules-left = i3
+modules-center = date
+modules-right = cpu ram battery wlan bluetooth logout
+
+; Gaps and borders
+line-size = 2
+line-color = #f5e0dc
+offset-x = 0
+offset-y = 0
+
+
 [module/i3]
 type = internal/i3
 format = <label-state>
