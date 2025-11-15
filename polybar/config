@@ -1,0 +1,57 @@
+[module/i3]
+type = internal/i3
+format = <label-state>
+label-focused = %name%
+label-focused-background = #45475a
+label-focused-foreground = #f5e0dc
+label-occupied = %name%
+label-occupied-background = #313244
+label-occupied-foreground = #cdd6f4
+label-empty = %name%
+label-empty-background = #1e1e2e
+label-empty-foreground = #585b70
+
+
+[module/date]
+type = internal/date
+format = %Y-%m-%d %H:%M
+interval = 5
+
+[module/cpu]
+type = internal/cpu
+format = <label>
+label = "CPU: %percentage%%"
+interval = 2
+
+[module/ram]
+type = internal/memory
+format = <label>
+label = "RAM: %used%/%total%MB"
+interval = 5
+
+[module/wlan]
+type = internal/network
+interface = wlan0
+format-connected = " %essid%"
+format-disconnected = "睊 Disconnected"
+interval = 10
+
+[module/bluetooth]
+type = internal/bluetooth
+format-connected = " %name%"
+format-disconnected = " Off"
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC
+format-charging = " %percentage%%"
+format-discharging = " %percentage%%"
+interval = 30
+
+[module/logout]
+type = custom/menu
+format = ""
+menu-0 = "Logout":i3-msg exit
+menu-1 = "Reboot":systemctl reboot
+menu-2 = "Shutdown":systemctl poweroff
